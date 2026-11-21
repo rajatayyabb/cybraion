@@ -17,6 +17,31 @@ was poisoned, not just checking whether the final tool call looks policy-complia
 
 ---
 
+## Why Cybraion exists
+
+AI agents can propose actions, but they should not be allowed to authorize their own sensitive operations. Cybraion adds a deterministic control point between an agent and its tools so every action can be **allowed, blocked, or paused for a human** before execution.
+
+<div align="center">
+
+<img src="assets/cybraion-demo.gif" alt="Animated Cybraion action authorization demo" width="96%" />
+
+</div>
+
+### The decision contract
+
+```text
+agent proposes action → Cybraion evaluates policy → ALLOW / BLOCK / REQUIRE_APPROVAL → audit event
+```
+
+> Built for local experiments, security education, and authorized environments. This is a research project—not a replacement for a production security review.
+
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/License-MIT-00f5d4?style=for-the-badge)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-Pytest-7c3aed?style=for-the-badge)](tests/)
+
+---
+
 ## Running on Kali Linux
 
 Kali ships with Python 3.11+ already installed. Everything below is free and runs fully offline
@@ -24,7 +49,7 @@ except the initial `pip install`.
 
 ```bash
 # 1. Clone your repo
-git clone https://github.com/<your-username>/cybraion.git
+git clone https://github.com/rajatayyabb/cybraion.git
 cd cybraion
 
 # 2. Create a virtual environment (recommended on Kali, which blocks system-wide pip installs)
@@ -114,6 +139,17 @@ or augment `classify_prompt()` / `scan_content_for_injection()` with an open-sou
 as [Rebuff](https://github.com/protectai/rebuff), [LLM Guard](https://github.com/protectai/llm-guard),
 or [Vigil-LLM](https://github.com/deadbits/vigil-llm), and compare detection rates against this
 baseline in your evaluation chapter.
+
+## Roadmap
+
+- [x] Deterministic policy engine
+- [x] Agent and tool registry
+- [x] Allow / block / human approval decisions
+- [x] Audit logging
+- [x] Provenance-aware escalation baseline
+- [ ] Authentication and multi-tenant projects
+- [ ] Production-grade detector benchmarks
+- [ ] Dashboard and policy authoring UI
 
 ## Status
 
